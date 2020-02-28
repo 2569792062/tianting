@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+      {% load static %}
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/xadmin.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/layui/layui.js' %}" charset="utf-8"></script>
+    <script type="text/javascript" src="{% static 'js/xadmin.js' %}"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="js/html5.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+    <div class="x-body">
+{#        <form action="" method="post" class="layui-form layui-form-pane">#}
+{#                <div class="layui-form-item">#}
+{#                    <label for="name" class="layui-form-label">#}
+{#                        <span class="x-red">*</span>角色名#}
+{#                    </label>#}
+{#                    <div class="layui-input-inline">#}
+{#                        <input type="text" id="name" name="name" required="" lay-verify="required"#}
+{#                        autocomplete="off" class="layui-input">#}
+{#                    </div>#}
+{#                </div>#}
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">
+
+                    </label>
+                {% if dw %}
+
+
+                <h1>分配权限(注：所有新建角色只能从一重天【散仙】爬起。)</h1>
+                    <table  class="layui-table layui-input-block">
+                        <tbody>
+
+                            <tr>
+                                {% for v in li %}
+                                    <form method="post">
+                                    <td>
+
+                                    {{ v.i_name }}
+                                    <input name="xx[]" type="checkbox" value="{{ v.id }}">
+
+                                    </td>
+                                        {% endfor %}
+                            </tr>
+
+                        <tr>
+                            {% for uu in ai %}
+                            <td>
+                                {{ uu.p_name }}
+                                <input name="yy[]" type="checkbox" value="{{ uu.primary_key }}">
+{#                                <input type="hidden" name="qx1" value="{{ uu.id }}">#}
+                            {% endfor %}
+                            </td>
+
+                            <tr>
+                            <td>
+                    <label for="name" class="layui-form-label">
+                        <span class="x-red">*</span>角色名
+                    </label>
+                        <input type="text" id="name" name="name" required="" lay-verify="required"
+                        autocomplete="off" class="layui-input">
+                            </td>
+                        </tr>
+
+<td><input type="submit" value="确认"></td>
+                        </form>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                {% if err %}
+                    {{ err }}
+                {% endif %}
+                </div>
+{#            </form>#}
+    </div>
+
+  <table class="layui-table">
+        <thead>
+          <tr>
+
+            <th>用户名</th>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>境界</th>
+            <th>所处九重天位置</th>
+            <th>能操作的模块</th>
+        </thead>
+        <tbody>
+          <tr>
+              {% for bb in ci %}
+                  <td>{{ bb.yh }}</td>
+                  <td>{{ bb.xm }}</td>
+                  <td>{{ bb.jj }}</td>
+                  <td>{{ bb.wz }}</td>
+                  <td>{{ bb.zy }}</td>
+
+                  <form method="post">
+                   <td><input type="submit" value="修改"></td>
+                      <input type="hidden" name="xm1" value="{{ bb.xm }}">
+                  </form>
+                  </tr>
+              {% endfor %}
+
+          <tr>
+
+            {% for cc in hao %}
+
+                  <td>{{ cc }}</td>
+                  </tr>
+                  {% endfor %}
+
+
+{% else %}
+  <table class="layui-table">
+        <thead>
+          <tr>
+
+            <th>用户名</th>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>境界</th>
+            <th>所处九重天位置</th>
+            <th>能操作的模块</th>
+        </thead>
+        <tbody>
+          <tr>
+              {% for bb in ci %}
+                  <td>{{ bb.yh }}</td>
+                  <td>{{ bb.xm }}</td>
+                  <td>{{ bb.jj }}</td>
+                  <td>{{ bb.wz }}</td>
+                  <td>{{ bb.zy }}</td>
+                  </tr>
+              {% endfor %}
+
+          <tr>
+
+            {% for cc in hao %}
+                  <td>{{ cc }}</td>
+                  </tr>
+                  {% endfor %}
+
+{% endif %}
+{{ err }}
+
+
+
+
+{#              {% for u in xr %}#}
+{#                  <td>{{ u.id }}</td>#}
+{#                <td>{{ u.g_name }}</td>#}
+{#                <td>{{ u.g_sex }}</td>#}
+{#                <td>{{ u.g_age }}</td>#}
+{#                <td>{{ u.g_town }}</td>#}
+{#                  {% for y in qx %}#}
+{#                      <form method="post">#}
+{#                      <td><input type="submit" value="{{ y.p_name }}"></td>#}
+{#                      <input type="hidden" name="ip1" value="{{ u.id }}">#}
+{#                      <input type="hidden" name="ip2" value="{{ y.primary_key }}">#}
+{##}
+{#                      </form>#}
+{#                      {% endfor %}#}
+{#                  <tr>#}
+{#                {% endfor %}#}
+
+
+
+        </tbody>
+      </table>
+  </body>
+
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+	<meta charset="UTF-8">
+	<title>南天门认证</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+	<link rel="stylesheet" href="{% static 'css/xadmin.css' %}">
+{#    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>#}
+    <script src="{% static 'lib/layui/layui.js' %}" charset="utf-8"></script>
+    <script type="text/javascript" src="{% static 'js/xadmin.js' %}"></script>
+
+</head>
+<body class="login-bg">
+    
+    <div class="login">
+        <div class="message">南天门通行证</div>
+        <div id="darkbannerwrap"></div>
+        
+{#        <form method="post" class="layui-form" action="{% url 'index' %}">#}
+        <form method="post" class="layui-form" action="/login/">
+            <input name="username" placeholder="口令"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="password" lay-verify="required" placeholder="暗语"  type="password" class="layui-input">
+            <hr class="hr15">
+            {# 验证码生成空间#}
+            <div class="row">
+                <div class="col-md-7 col-xs-7">
+                    <input type="text" class="form-control" id="id_code" placeholder="请输入验证码" name="check_code">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <img src="/check_code" onclick="changeImg(this)" class="img">
+                    <span id="yzm"> </span>
+                </div>
+            </div>
+
+            <hr class="hr15">
+            <input value="辨识" lay-submit lay-filter="login" style="width:100%;" type="submit">
+
+            <hr class="hr20" >
+        </form>
+        {{ err }}
+        <a href="{% url 'reg' %}"><input value="申报" lay-submit lay-filter="register" style="width:100%;" type="submit"></a>
+    </div>
+
+<script src="{% static 'js/jquery-3.1.1.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+    <script>
+
+    function changeImg(ths) {
+        // 硬编码
+        ths.src = '/?temp=' + Math.random();
+        // 使用命名空间，发送请求
+        ths.src = '{% url 'check_code' %}' + '?temp=' + Math.random();
+                }
+    </script>
+
+    
+    <!-- 底部结束 -->
+    
+</body>
+</html>

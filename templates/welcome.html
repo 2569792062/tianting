@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <title>天庭九重天</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+
+        <link rel="stylesheet" href="{% static 'css/font.css' %}">
+        <link rel="stylesheet" href="{% static 'css/xadmin.css' %}">
+    </head>
+    <body>
+        <div class="x-body">
+            <blockquote class="layui-elem-quote">欢迎进入九重天！</blockquote>
+            <fieldset class="layui-elem-field">
+              <legend>九重天概览</legend>
+              <div class="layui-field-box">
+                <table class="layui-table" lay-even>
+                    <thead>
+                        <tr>
+                            <th>天外有天</th>
+                            <th>进阶要求</th>
+                            <th>现有仙尊</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    {% for y in li %}
+                        <tr>
+                            <td>{{ y.ss }}</td>
+                            <td>{{ y.su }}</td>
+                            <td>{{ y.us }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+            </fieldset>
+        </div>
+    </body>
+</html>
